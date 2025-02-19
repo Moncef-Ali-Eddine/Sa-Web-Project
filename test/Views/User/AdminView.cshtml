@@ -1,0 +1,48 @@
+﻿@model IEnumerable<test.Models.User>
+
+@{
+    ViewData["Title"] = "Admin - Users Management";
+}
+
+<h1>Admin - Users Management</h1>
+
+<!-- Search Form -->
+<form method="get" asp-action="AdminView">
+    <input type="text" name="searchQuery" placeholder="Search by username or role..."
+           value="@Context.Request.Query["searchQuery"]" class="form-control" />
+    <button type="submit" class="btn btn-secondary">Search</button>
+</form>
+
+<!-- Table displaying all users -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Role</td>
+                <td>
+                    <!-- Edit Button -->
+                    <a href="@Url.Action("Edit", "User", new { id = user.Id })" class="btn btn-warning">Edit</a>
+
+                    <!-- Delete Button (with confirmation) -->
+                    <a href="@Url.Action("Delete", "User", new { id = user.Id })"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Button to Add New User -->
+<a href="@Url.Action("Create", "User")" class="btn btn-primary">Add New User</a>
+<!-- Logout Button -->
+<a href="@Url.Action("Logout", "User")" class="btn btn-danger">Logout</a>

@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Employee Panel";
+}
+
+<h2>Employee Panel</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (ViewData.ModelState["Username"]?.Errors.Count > 0)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState["Username"].Errors)
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form method="post" asp-action="CreateEmployee">
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" id="Username" name="Username" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Password_hash">Password</label>
+        <input type="password" id="Password_hash" name="Password_hash" class="form-control" required />
+    </div>
+
+    <input type="hidden" name="Role" value="Employee" />
+
+    <button type="submit" class="btn btn-primary">Add Employee</button>
+</form>
+
+<hr>
+
+<!-- Logout Button -->
+<form method="post" asp-action="Logout">
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>

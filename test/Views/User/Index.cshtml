@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>Welcome, @TempData["Username"]!</h2>
+
+<p>This is the home page after you logged in successfully.</p>
+
+<a href="@Url.Action("Logout", "User")" class="btn btn-danger">Logout</a>

@@ -1,0 +1,36 @@
+﻿@model test.Models.User
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1>Edit User</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" value="@Model.Username" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Password_hash">Password</label>
+        <input type="password" class="form-control" id="Password_hash" name="Password_hash" placeholder="Please enter the old or new password to proceed" />
+    </div>
+
+    <div class="form-group">
+        <label for="Role">Role</label>
+        <div>
+            <input type="radio" id="Admin" name="Role" value="Admin" @(Model.Role == "Admin" ? "checked" : "") />
+            <label for="Admin">Admin</label>
+        </div>
+        <div>
+            <input type="radio" id="Employee" name="Role" value="Employee" @(Model.Role == "Employee" ? "checked" : "") />
+            <label for="Employee">Employee</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("AdminView", "User")" class="btn btn-secondary">Cancel</a>
+</form>

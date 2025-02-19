@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Add New Employee";
+}
+
+<h2>Add New Employee</h2>
+
+<form method="post" asp-action="CreateEmployee">
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" id="Username" name="Username" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Password_hash">Password</label>
+        <input type="password" id="Password_hash" name="Password_hash" class="form-control" required />
+    </div>
+
+    <!-- Hidden field for role -->
+    <input type="hidden" name="Role" value="Employee" />
+
+    <button type="submit" class="btn btn-success">Create Employee</button>
+</form>

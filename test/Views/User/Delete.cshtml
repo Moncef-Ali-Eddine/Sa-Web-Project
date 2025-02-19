@@ -1,0 +1,18 @@
+﻿@model test.Models.User
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h1>Delete User</h1>
+
+<h3>Are you sure you want to delete the user "@Model.Username"?</h3>
+<div>
+    <p>Role: @Model.Role</p>
+</div>
+
+<form method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="@Url.Action("AdminView", "User")" class="btn btn-secondary">Cancel</a>
+</form>
